@@ -15,7 +15,7 @@ public class UsingMockitoMockingStaticMethod {
     public static void main(String[] args) {
         var expected = LocalDateTime.of(2001, 10, 1, 12, 0, 0).atZone(ZoneOffset.UTC).toInstant();
 
-        try (var mockedStatic = Mockito.mockStatic(Instant.class,Mockito.CALLS_REAL_METHODS)) {
+        try (var mockedStatic = Mockito.mockStatic(Instant.class, Mockito.CALLS_REAL_METHODS)) {
             mockedStatic.when(Instant::now).then(new Answer<Instant>() {
                 @Override
                 public Instant answer(InvocationOnMock invocationOnMock) throws Throwable {
