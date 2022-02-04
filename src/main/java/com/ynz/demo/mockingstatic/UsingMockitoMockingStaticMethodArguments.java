@@ -11,10 +11,10 @@ public class UsingMockitoMockingStaticMethodArguments {
 
     public static void main(String[] args) {
 
-        var expected = ZonedDateTime.of(1990, 9, 01, 12, 30, 1, 1, ZoneOffset.UTC);
+        var expected = ZonedDateTime.of(1990, 9, 1, 12, 30, 1, 1, ZoneOffset.UTC);
 
         try (var mockedZonedDateTime = Mockito.mockStatic(ZonedDateTime.class)) {
-            mockedZonedDateTime.when(() -> ZonedDateTime.now(ZoneOffset.UTC)).thenReturn(expected);
+            mockedZonedDateTime.when(() -> ZonedDateTime.now(Mockito.any(ZoneOffset.class))).thenReturn(expected);
             var currentYear = ZonedDateTime.now(ZoneOffset.UTC).getYear();
             log.info("Current year: {}", currentYear);
         }
